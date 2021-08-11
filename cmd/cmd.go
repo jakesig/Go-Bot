@@ -27,6 +27,6 @@ func Cmd(s *discordgo.Session, m *discordgo.MessageCreate, autoresponses map[str
 		Autoresponse(s, m, autoresponses)
 		return
 	default:
-		return
+		break
 	}
 }
