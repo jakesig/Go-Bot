@@ -22,6 +22,7 @@ import (
 var (
 	token         string
 	section       string
+	prefix        string
 	paincount     int
 	linecount     int
 	autoresponses map[string]string
@@ -40,6 +41,7 @@ func Init() {
 	buf := make([]byte, 1024)
 	linecount = 0
 	autoresponses = make(map[string]string)
+	prefix = "-"
 
 	// Loop for reading init.txt
 

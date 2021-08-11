@@ -28,7 +28,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	// Process it as a command first
 
-	cmd.Cmd(s, m, autoresponses)
+	cmd.Cmd(s, m, autoresponses, prefix)
 
 	if m.Content == "pain" {
 		paincount++
@@ -39,7 +39,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	// For loop for autoresponses
 
 	for key, value := range autoresponses {
-		if strings.Contains(m.Content, key) && m.Content[:1] != "!" {
+		if strings.Contains(m.Content, key) && m.Content[:1] != prefix {
 			s.ChannelMessageSend(m.ChannelID, value)
 		}
 	}

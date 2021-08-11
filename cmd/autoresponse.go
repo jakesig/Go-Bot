@@ -10,12 +10,13 @@ package cmd
 
 import (
 	"github.com/bwmarrin/discordgo"
+	"github.com/clinet/discordgo-embed"
 	"os"
 	"strings"
 )
 
 var (
-	embed *discordgo.MessageEmbed
+	autoresponse_embed *discordgo.MessageEmbed
 )
 
 // Primary function
@@ -46,13 +47,11 @@ func Autoresponse(s *discordgo.Session, m *discordgo.MessageCreate, autoresponse
 
 	f.Write([]byte("\n" + write))
 
-	//embed = discordgo.MessageEmbed{}
-	//embed.Title = "Autoresponse Added!"
-	//embed.Type = discordgo.EmbedTypeRich
-	//embed.Description = "**Prompt:** " + args[1] + "\n**Response:** " + autoresponses[args[1]]
-	//embed.Timestamp = time.Now().String()
-	//
-	//s.ChannelMessageSendEmbed(m.ChannelID, embed)
+	// Embed construction
+
+	autoresponse_embed = embed.NewGenericEmbedAdvanced("Autoresponse Added!",
+		"**Prompt:** "+args[1]+"\n**Response:** "+autoresponses[args[1]], 15844367)
+	s.ChannelMessageSendEmbed(m.ChannelID, autoresponse_embed)
 
 	// Close the init.txt file
 
