@@ -41,7 +41,7 @@ func Init() {
 	buf := make([]byte, 1024)
 	linecount = 0
 	autoresponses = make(map[string]string)
-	prefix = "-"
+	prefix = "$"
 
 	// Loop for reading init.txt
 
