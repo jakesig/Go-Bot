@@ -1,8 +1,14 @@
 package config
 
+// Imports
+
 import (
+  "strings"
 	"github.com/bwmarrin/discordgo"
+  "GoBot/cmd"
 )
+
+// Message Handler
 
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
@@ -12,13 +18,14 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		return
 	}
 
-  switch m.Content {
-    case "ping":
-      s.ChannelMessageSend(m.ChannelID, "Pong!")
-    case "pong":
-      s.ChannelMessageSend(m.ChannelID, "Ping!")
-    default:
-      break
+  cmd.Cmd(s, m, autoresponses)
+
+  // For loop for autoresponses
+
+  for key, value := range autoresponses {
+    if (strings.Contains(m.Content, key) && m.Content[:1] != "!") {
+      s.ChannelMessageSend(m.ChannelID, value)
+    }
   }
 
 }

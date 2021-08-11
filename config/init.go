@@ -1,5 +1,7 @@
 package config
 
+// Imports
+
 import (
   "io"
   "os"
@@ -9,20 +11,35 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-var token string
+// Variables
+
+var (
+  token string
+  section string
+  linecount int
+  autoresponses map[string]string
+)
+
+// Initialization function
 
 func Init() {
-  f, err := os.Open("../init.txt")
+
+  // Open init.txt file
+
+  f, err := os.Open("./init.txt")
 
   if err != nil {
-      log.Fatalf("unable to read file: %v", err)
+    log.Fatalf("unable to read file: %v", err)
   }
 
-  defer f.Close()
+  // Variables to keep track of lines, linecount, and autoresponses
 
   buf := make([]byte, 1024)
+  linecount = 0
+  autoresponses = make(map[string]string)
 
   for {
+
     n, err := f.Read(buf)
 
     if err == io.EOF {
@@ -30,30 +47,62 @@ func Init() {
     }
 
     if n > 0 {
-      line := strings.Split(string(buf[:n]), ": ")
 
-      if line[0] == "TOKEN" {
-        token = line[1];
+      lines := strings.Split(string(buf[:n]), "\n")
+
+      // Get the line of the file
+
+      for i := 0; i < len(lines); i++ {
+        line := lines[linecount]
+        linecount = linecount + 1
+
+        // The first line has the token on it
+
+        if linecount == 1 {
+          token = strings.Split(line, ": ")[1]
+        }
+
+        // Checking if we hit the autoresponse section of the init file
+
+        if line == "AUTORESPONSES" {
+          section = line
+        } else if section == "AUTORESPONSES" {
+          components := strings.Split(line, "/")
+          autoresponses[components[0]] = components[1]
+        }
+
       }
+
+      
     }
 
   }
 
-  // Create a new Discord session using the provided bot token.
+  // Close the file
+
+  f.Close()
+
+  // Creates a new discordgo client
+
 	dg, err := discordgo.New("Bot " + token)
 
   if err != nil {
     fmt.Println("Unsuccessful: ", err)
   }
 
-	// Register the messageCreate func as a callback for MessageCreate events.
+  // Handlers
+
 	dg.AddHandler(messageCreate)
 
-	// In this example, we only care about receiving message events.
+	// Intents
+
 	dg.Identify.Intents = discordgo.IntentsGuildMessages
 
-	// Open a websocket connection to Discord and begin listening.
+	// Open connection to Discord
+
 	dg.Open()
+
+  // Logs to the console once the bot is running
 
 	fmt.Println("Logged in as " + dg.State.User.Username + "#" + dg.State.User.Discriminator)
 }
