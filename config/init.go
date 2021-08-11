@@ -9,12 +9,12 @@ package config
 // Imports
 
 import (
-  "fmt"
-  "github.com/bwmarrin/discordgo"
-  "io"
-  "log"
-  "os"
-  "strings"
+    "fmt"
+    "github.com/bwmarrin/discordgo"
+    "io"
+    "log"
+    "os"
+    "strings"
 )
 
 // Variables
@@ -77,7 +77,7 @@ func Init() {
                     components := strings.Split(line, "/")
                     autoresponses[components[0]] = components[1]
                 }
-          }
+            }
         }
     }
 
