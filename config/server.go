@@ -9,20 +9,20 @@ package config
 // Imports
 
 import (
-  "fmt"
-  "net/http"
+    "fmt"
+    "net/http"
 )
 
 // Primary server function
 
 func Server() {
-  fmt.Println("Server is running!")
-  http.HandleFunc("/", HelloServer)
-  http.ListenAndServe(":8080", nil)
+    fmt.Println("Server is running!")
+    http.HandleFunc("/", HelloServer)
+    http.ListenAndServe(":8080", nil)
 }
 
 // Server helper function
 
 func HelloServer(w http.ResponseWriter, r *http.Request) {
-  fmt.Fprintf(w, "Bot is alive!")
+    fmt.Fprintf(w, "Bot is alive!")
 }

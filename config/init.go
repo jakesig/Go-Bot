@@ -9,103 +9,103 @@ package config
 // Imports
 
 import (
+  "fmt"
+  "github.com/bwmarrin/discordgo"
   "io"
+  "log"
   "os"
   "strings"
-  "log"
-  "fmt"
-	"github.com/bwmarrin/discordgo"
 )
 
 // Variables
 
 var (
-  token string
-  section string
-  linecount int
-  autoresponses map[string]string
+    token string
+    section string
+    linecount int
+    autoresponses map[string]string
 )
 
 // Initialization function
 
 func Init() {
 
-  // Open init.txt file
+    // Open init.txt file
 
-  f, err := os.Open("./init.txt")
+    f, err := os.Open("./init.txt")
 
-  if err != nil {
-    log.Fatalf("unable to read file: %v", err)
-  }
-
-  // Variables to keep track of lines, linecount, and autoresponses
-
-  buf := make([]byte, 1024)
-  linecount = 0
-  autoresponses = make(map[string]string)
-
-  // Loop for reading init.txt
-
-  for {
-
-    n, err := f.Read(buf)
-
-    if err == io.EOF {
-      break
+    if err != nil {
+      log.Fatalf("unable to read file: %v", err)
     }
 
-    if n > 0 {
-      lines := strings.Split(string(buf[:n]), "\n")
+    // Variables to keep track of lines, linecount, and autoresponses
 
-      // Get the line of the file
+    buf := make([]byte, 1024)
+    linecount = 0
+    autoresponses = make(map[string]string)
 
-      for i := 0; i < len(lines); i++ {
-        line := lines[linecount]
-        linecount = linecount + 1
+    // Loop for reading init.txt
 
-        // The first line has the token on it
+    for {
 
-        if linecount == 1 {
-          token = strings.Split(line, ": ")[1]
+        n, err := f.Read(buf)
+
+        if err == io.EOF {
+            break
         }
 
-        // Checking if we hit the autoresponse section of the init file
+        if n > 0 {
+            lines := strings.Split(string(buf[:n]), "\n")
 
-        if line == "AUTORESPONSES" {
-          section = line
-        } else if section == "AUTORESPONSES" {
-          components := strings.Split(line, "/")
-          autoresponses[components[0]] = components[1]
+            // Get the line of the file
+
+            for i := 0; i < len(lines); i++ {
+                line := lines[linecount]
+                linecount = linecount + 1
+
+                // The first line has the token on it
+
+                if linecount == 1 {
+                    token = strings.Split(line, ": ")[1]
+                }
+
+                // Checking if we hit the autoresponse section of the init file
+
+                if line == "AUTORESPONSES" {
+                    section = line
+                } else if section == "AUTORESPONSES" {
+                    components := strings.Split(line, "/")
+                    autoresponses[components[0]] = components[1]
+                }
+          }
         }
-      }
     }
-  }
 
-  // Close the file
+    // Close the file
 
-  f.Close()
+    f.Close()
 
-  // Creates a new discordgo client
+    // Creates a new discordgo client
 
-	dg, err := discordgo.New("Bot " + token)
+    dg, err := discordgo.New("Bot " + token)
 
-  if err != nil {
-    fmt.Println("Unsuccessful: ", err)
-  }
+    if err != nil {
+      fmt.Println("Unsuccessful: ", err)
+    }
 
-  // Handlers
+    // Handlers
 
-	dg.AddHandler(messageCreate)
+    dg.AddHandler(messageCreate)
 
-	// Intents
+    // Intents
 
-	dg.Identify.Intents = discordgo.IntentsGuildMessages
+    dg.Identify.Intents = discordgo.IntentsGuildMessages
 
-	// Open connection to Discord
+    // Open connection to Discord
 
-	dg.Open()
+    dg.Open()
 
-  // Logs to the console once the bot is running
+    // Logs to the console once the bot is running
 
-	fmt.Println("Logged in as " + dg.State.User.Username + "#" + dg.State.User.Discriminator)
+    //fmt.Println("Logged in as " + dg.State.User.Username + "#" + dg.State.User.Discriminator)
 }

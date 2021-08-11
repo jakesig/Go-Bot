@@ -9,8 +9,8 @@ package cmd
 // Imports
 
 import (
-  "strings"
   "github.com/bwmarrin/discordgo"
+  "strings"
 )
 
 // Primary function
@@ -19,14 +19,14 @@ func Cmd(s *discordgo.Session, m *discordgo.MessageCreate, autoresponses map[str
 
   // Switch statement for processing commands
 
-  switch(strings.Split(m.Content, " ")[0]) {
-    case "!ping":
-      s.ChannelMessageSend(m.ChannelID, "<@" + m.Author.ID + ">, " + "pong!")
-      return
-    case "!autoresponse":
-      Autoresponse(s, m, autoresponses)
-      return
-    default:
-      return
-  }
+    switch(strings.Split(m.Content, " ")[0]) {
+        case "!ping":
+            s.ChannelMessageSend(m.ChannelID, "<@" + m.Author.ID + ">, " + "pong!")
+            return
+        case "!autoresponse":
+            Autoresponse(s, m, autoresponses)
+            return
+        default:
+            return
+    }
 }

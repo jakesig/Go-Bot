@@ -9,30 +9,30 @@ package config
 // Imports
 
 import (
-  "strings"
+	"GoBot/cmd"
 	"github.com/bwmarrin/discordgo"
-  "GoBot/cmd"
+	"strings"
 )
 
 // Message Handler
 
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
-  //Checks if the bot sent the message
+	//Checks if the bot sent the message
 
 	if m.Author.ID == s.State.User.ID {
 		return
 	}
 
-  // Process it as a command first
+  	// Process it as a command first
 
-  cmd.Cmd(s, m, autoresponses)
+  	cmd.Cmd(s, m, autoresponses)
 
-  // For loop for autoresponses
+  	// For loop for autoresponses
 
-  for key, value := range autoresponses {
-    if (strings.Contains(m.Content, key) && m.Content[:1] != "!") {
-      s.ChannelMessageSend(m.ChannelID, value)
-    }
-  }
+	for key, value := range autoresponses {
+		if (strings.Contains(m.Content, key) && m.Content[:1] != "!") {
+		  s.ChannelMessageSend(m.ChannelID, value)
+		}
+	}
 }
