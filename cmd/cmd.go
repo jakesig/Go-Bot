@@ -22,10 +22,10 @@ func Cmd(s *discordgo.Session, m *discordgo.MessageCreate, autoresponses map[str
 	switch strings.Split(m.Content, " ")[0] {
 	case "!ping":
 		s.ChannelMessageSend(m.ChannelID, "<@"+m.Author.ID+">, "+"pong!")
-		return
+		break
 	case "!autoresponse":
 		Autoresponse(s, m, autoresponses)
-		return
+		break
 	default:
 		break
 	}

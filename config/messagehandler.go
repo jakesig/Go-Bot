@@ -11,6 +11,8 @@ package config
 import (
 	"GoBot/cmd"
 	"github.com/bwmarrin/discordgo"
+	"io/ioutil"
+	"strconv"
 	"strings"
 )
 
@@ -27,6 +29,12 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	// Process it as a command first
 
 	cmd.Cmd(s, m, autoresponses)
+
+	if m.Content == "pain" {
+		paincount++
+		ioutil.WriteFile("count.txt", []byte(strconv.Itoa(paincount)), 0644)
+		s.ChannelMessageSend(m.ChannelID, "Pain count: "+strconv.Itoa(paincount))
+	}
 
 	// For loop for autoresponses
 

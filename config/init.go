@@ -12,8 +12,8 @@ import (
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"io"
-	"log"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -22,6 +22,7 @@ import (
 var (
 	token         string
 	section       string
+	paincount     int
 	linecount     int
 	autoresponses map[string]string
 )
@@ -32,11 +33,7 @@ func Init() {
 
 	// Open init.txt file
 
-	f, err := os.Open("./init.txt")
-
-	if err != nil {
-		log.Fatalf("unable to read file: %v", err)
-	}
+	f, _ := os.Open("./init.txt")
 
 	// Variables to keep track of lines, linecount, and autoresponses
 
@@ -84,6 +81,10 @@ func Init() {
 	// Close the file
 
 	f.Close()
+
+	f, _ = os.Open("./count.txt")
+	n, _ := f.Read(buf)
+	paincount, _ = strconv.Atoi(strings.TrimSpace(string(buf[:n])))
 
 	// Creates a new discordgo client
 
