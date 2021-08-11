@@ -1,18 +1,30 @@
+/* main.go
+** Go Bot
+** Author: Jake Sigman
+** This file contains the primary code for operating the bot.
+*/
+
 package main
+
+// Imports
 
 import (
   "fmt"
   "GoBot/config"
 )
 
+// Main function, with prints showing status
+
 func main() {
 
-  fmt.Println("Initializing bot...")
+  // Initialize the bot
 
+  fmt.Println("Initializing bot...")
   config.Init()
 
-  fmt.Println("Initializing server...")
+  // Initialize the server
 
+  fmt.Println("Initializing server...")
   config.Server()
 
 }

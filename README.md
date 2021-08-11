@@ -15,4 +15,8 @@ This bot serves to help me learn Go.
 
     ```
     TOKEN: [Bot token]
+
+    AUTORESPONSES
+    [Prompt 1]/[Response 1]
+    [Prompt 2]/[Response 2]
     ```

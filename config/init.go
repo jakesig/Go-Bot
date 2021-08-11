@@ -1,3 +1,9 @@
+/* cmd.go
+** Go Bot
+** Author: Jake Sigman
+** This file contains the code for initializing the bot.
+*/
+
 package config
 
 // Imports
@@ -38,6 +44,8 @@ func Init() {
   linecount = 0
   autoresponses = make(map[string]string)
 
+  // Loop for reading init.txt
+
   for {
 
     n, err := f.Read(buf)
@@ -47,7 +55,6 @@ func Init() {
     }
 
     if n > 0 {
-
       lines := strings.Split(string(buf[:n]), "\n")
 
       // Get the line of the file
@@ -70,12 +77,8 @@ func Init() {
           components := strings.Split(line, "/")
           autoresponses[components[0]] = components[1]
         }
-
       }
-
-      
     }
-
   }
 
   // Close the file

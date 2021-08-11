@@ -1,3 +1,9 @@
+/* messagehandler.go
+** Go Bot
+** Author: Jake Sigman
+** This file contains the code for handling messages.
+*/
+
 package config
 
 // Imports
@@ -18,6 +24,8 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		return
 	}
 
+  // Process it as a command first
+
   cmd.Cmd(s, m, autoresponses)
 
   // For loop for autoresponses
@@ -27,5 +35,4 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
       s.ChannelMessageSend(m.ChannelID, value)
     }
   }
-
 }
