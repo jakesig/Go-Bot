@@ -9,6 +9,7 @@ package cmd
 // Imports
 
 import (
+	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"github.com/clinet/discordgo-embed"
 	"os"
@@ -45,15 +46,23 @@ func Autoresponse(s *discordgo.Session, m *discordgo.MessageCreate, autoresponse
 
 	// Saving key and value to init.txt
 
-	f.Write([]byte("\n" + write))
-
+	if _, err := f.Write([]byte("\n" + write)); err != nil {
+		fmt.Println("Error writing to file!\n" + err.Error())
+		return
+	}
 	// Embed construction
 
 	autoresponse_embed = embed.NewGenericEmbedAdvanced("Autoresponse Added!",
 		"**Prompt:** "+args[1]+"\n**Response:** "+autoresponses[args[1]], 15844367)
-	s.ChannelMessageSendEmbed(m.ChannelID, autoresponse_embed)
+	if _, err := s.ChannelMessageSendEmbed(m.ChannelID, autoresponse_embed); err != nil {
+		fmt.Println("Error sending Embed!\n" + err.Error())
+		return
+	}
 
 	// Close the init.txt file
 
-	f.Close()
+	if err := f.Close(); err != nil {
+		fmt.Println("Error closing file!\n" + err.Error())
+		return
+	}
 }
