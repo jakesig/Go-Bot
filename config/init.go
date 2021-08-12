@@ -82,7 +82,10 @@ func Init() {
 
 	// Close the file
 
-	f.Close()
+	if err := f.Close(); err != nil {
+		fmt.Println("Error closing init.txt!\n" + err.Error())
+		return
+	}
 
 	f, _ = os.Open("./count.txt")
 	n, _ := f.Read(buf)
@@ -93,7 +96,8 @@ func Init() {
 	dg, err := discordgo.New("Bot " + strings.TrimSpace(token))
 
 	if err != nil {
-		fmt.Println("Unsuccessful: ", err)
+		fmt.Println("Unsuccessful creation of bot!\n" + err.Error())
+		return
 	}
 
 	// Handlers
@@ -106,7 +110,10 @@ func Init() {
 
 	// Open connection to Discord
 
-	dg.Open()
+	if err := dg.Open(); err != nil {
+		fmt.Println("Error opening Bot!\n" + err.Error())
+		return
+	}
 
 	// Logs to the console once the bot is running
 

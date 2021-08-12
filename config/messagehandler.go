@@ -10,6 +10,7 @@ package config
 
 import (
 	"GoBot/cmd"
+	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"io/ioutil"
 	"strconv"
@@ -28,19 +29,26 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	// Process it as a command first
 
-	cmd.Cmd(s, m, autoresponses, prefix)
+	cmd.Cmd(s, m, autoresponses, "$", paincount)
+
+	// Pain counter
 
 	if m.Content == "pain" {
 		paincount++
-		ioutil.WriteFile("count.txt", []byte(strconv.Itoa(paincount)), 0644)
-		s.ChannelMessageSend(m.ChannelID, "Pain count: "+strconv.Itoa(paincount))
+		if err := ioutil.WriteFile("count.txt", []byte(strconv.Itoa(paincount)), 0644); err != nil {
+			fmt.Println("Error writing to file!\n" + err.Error())
+			return
+		}
 	}
 
 	// For loop for autoresponses
 
 	for key, value := range autoresponses {
 		if strings.Contains(m.Content, key) && m.Content[:1] != prefix {
-			s.ChannelMessageSend(m.ChannelID, value)
+			if _, err := s.ChannelMessageSend(m.ChannelID, value); err != nil {
+				fmt.Println("Error sending message!\n" + err.Error())
+				return
+			}
 		}
 	}
 }

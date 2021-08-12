@@ -15,19 +15,22 @@ import (
 
 // Primary function
 
-func Cmd(s *discordgo.Session, m *discordgo.MessageCreate, autoresponses map[string]string, prefix string) {
+func Cmd(s *discordgo.Session, m *discordgo.MessageCreate, autoresponses map[string]string, prefix string, paincount int) {
 
 	// Switch statement for processing commands
 
 	switch strings.Split(m.Content, " ")[0] {
 	case prefix + "ping":
-		s.ChannelMessageSend(m.ChannelID, "<@"+m.Author.ID+">, "+"pong!")
+		Ping(s, m)
 		break
 	case prefix + "autoresponse":
 		Autoresponse(s, m, autoresponses)
 		break
 	case prefix + "help":
 		Help(s, m)
+		break
+	case prefix + "paincount":
+		PainCount(s, m, paincount)
 		break
 	default:
 		break

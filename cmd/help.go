@@ -1,13 +1,20 @@
 package cmd
 
+// Imports
+
 import (
+	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"github.com/clinet/discordgo-embed"
 )
 
+// Variables
+
 var (
 	help_embed *discordgo.MessageEmbed
 )
+
+// Primary function
 
 func Help(s *discordgo.Session, m *discordgo.MessageCreate) {
 
@@ -18,5 +25,10 @@ func Help(s *discordgo.Session, m *discordgo.MessageCreate) {
 			"**$ping:** Pings the bot.\n"+
 			"**$autoresponse `{prompt}` `{response}`:** Adds autoresponse to bot.",
 		15844367)
-	s.ChannelMessageSendEmbed(m.ChannelID, help_embed)
+
+	// Embed sending
+
+	if _, err := s.ChannelMessageSendEmbed(m.ChannelID, help_embed); err != nil {
+		fmt.Println("Error in sending embed!\n" + err.Error())
+	}
 }
