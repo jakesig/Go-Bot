@@ -9,6 +9,7 @@ package cmd
 // Imports
 
 import (
+	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"strings"
 )
@@ -34,5 +35,14 @@ func Cmd(s *discordgo.Session, m *discordgo.MessageCreate, autoresponses map[str
 		break
 	default:
 		break
+	}
+}
+
+// Function for deleting invocations
+
+func DeleteInvocation(s *discordgo.Session, m *discordgo.MessageCreate) {
+	if err := s.ChannelMessageDelete(m.ChannelID, m.ID); err != nil {
+		fmt.Println("Error deleting message!\n" + err.Error())
+		return
 	}
 }

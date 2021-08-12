@@ -18,6 +18,10 @@ var (
 
 func Help(s *discordgo.Session, m *discordgo.MessageCreate) {
 
+	// Delete invocation
+
+	DeleteInvocation(s, m)
+
 	// Embed construction
 
 	help_embed = embed.NewGenericEmbedAdvanced("Go Bot List of Commands",

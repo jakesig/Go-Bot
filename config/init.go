@@ -54,9 +54,16 @@ func Init() {
 		}
 
 		if n > 0 {
+
+			// Log to the console what we're up to
+
+			fmt.Println("Reading config file...")
+
+			// Get the lines of the file
+
 			lines := strings.Split(string(buf[:n]), "\n")
 
-			// Get the line of the file
+			// Parse the lines of the file
 
 			for i := 0; i < len(lines); i++ {
 				line := lines[linecount]
@@ -68,12 +75,12 @@ func Init() {
 					token = strings.Split(line, ": ")[1]
 				}
 
-				// Checking if we hit the autoresponse section of the init file
+				// Checking if we hit the autoresponses section of the init file
 
-				if line == strings.TrimSpace("AUTORESPONSES") {
-					section = line
+				if strings.TrimSpace(line) == "AUTORESPONSES" {
+					section = "AUTORESPONSES"
 				} else if section == "AUTORESPONSES" {
-					components := strings.Split(line, "/")
+					components := strings.Split(strings.TrimSpace(line), "/")
 					autoresponses[components[0]] = components[1]
 				}
 			}
@@ -86,6 +93,8 @@ func Init() {
 		fmt.Println("Error closing init.txt!\n" + err.Error())
 		return
 	}
+
+	// Open the file keeping track of the pain count, and read the count
 
 	f, _ = os.Open("./count.txt")
 	n, _ := f.Read(buf)

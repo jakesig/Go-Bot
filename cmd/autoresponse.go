@@ -24,6 +24,10 @@ var (
 
 func Autoresponse(s *discordgo.Session, m *discordgo.MessageCreate, autoresponses map[string]string) {
 
+	// Delete invocation
+
+	DeleteInvocation(s, m)
+
 	// Reading each argument of command, taking the first argument as the key, and second as the value in the autoresponses map
 
 	args := strings.Split(m.Content, " ")

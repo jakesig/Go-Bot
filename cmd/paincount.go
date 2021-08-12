@@ -19,6 +19,10 @@ var (
 
 func PainCount(s *discordgo.Session, m *discordgo.MessageCreate, paincount int) {
 
+	// Delete invocation
+
+	DeleteInvocation(s, m)
+
 	// Embed construction
 
 	paincount_embed = embed.NewGenericEmbedAdvanced("Pain Count", strconv.Itoa(paincount), 15844367)
