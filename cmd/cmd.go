@@ -33,6 +33,9 @@ func Cmd(s *discordgo.Session, m *discordgo.MessageCreate, autoresponses map[str
 	case prefix + "paincount":
 		PainCount(s, m, paincount)
 		break
+	case prefix + "pain":
+		Pain(s, m)
+		break
 	default:
 		break
 	}
