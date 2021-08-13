@@ -9,7 +9,7 @@ package config
 // Imports
 
 import (
-	"GoBot/cmd"
+	"PainBot/cmd"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"io/ioutil"

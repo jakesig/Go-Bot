@@ -9,7 +9,7 @@ package main
 // Imports
 
 import (
-	"GoBot/config"
+	"PainBot/config"
 	"fmt"
 )
 
