@@ -23,7 +23,7 @@ func Pain(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	// Send the image
 
-	if _, err := s.ChannelMessageSend(m.ChannelID, "https://github.com/jakesig/Go-Bot/blob/master/pain.jpg?raw=true"); err != nil {
+	if _, err := s.ChannelMessageSend(m.ChannelID, "https://github.com/jakesig/Go-Bot/blob/master/share/pain.jpg?raw=true"); err != nil {
 		fmt.Println("Error sending image!\n" + err.Error())
 		return
 	}
