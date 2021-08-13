@@ -12,9 +12,11 @@ import (
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"io"
+	"math/rand"
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 // Variables
@@ -134,4 +136,11 @@ func Init() {
 	// Logs to the console once the bot is running
 
 	fmt.Println("Logged in as " + dg.State.User.Username + "#" + dg.State.User.Discriminator)
+
+}
+
+func randomTimestamp() time.Time {
+	randomTime := rand.Int63n(time.Now().Unix()-94608000) + 94608000
+	randomNow := time.Unix(randomTime, 0)
+	return randomNow
 }
