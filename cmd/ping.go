@@ -1,3 +1,9 @@
+/* ping.go
+** Go Bot
+** Author: Jake Sigman
+** This file contains the code for pinging the bot.
+ */
+
 package cmd
 
 // Imports

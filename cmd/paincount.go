@@ -1,3 +1,9 @@
+/* paincount.go
+** Go Bot
+** Author: Jake Sigman
+** This file contains the code for the pain count function.
+ */
+
 package cmd
 
 // Imports

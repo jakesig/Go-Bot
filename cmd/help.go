@@ -1,3 +1,9 @@
+/* help.go
+** Go Bot
+** Author: Jake Sigman
+** This file contains the code for the help menu.
+ */
+
 package cmd
 
 // Imports
