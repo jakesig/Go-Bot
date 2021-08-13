@@ -33,6 +33,8 @@ func Help(s *discordgo.Session, m *discordgo.MessageCreate) {
 	help_embed = embed.NewGenericEmbedAdvanced("Go Bot List of Commands",
 		"**$help:** Opens this menu.\n"+
 			"**$ping:** Pings the bot.\n"+
+			"**$paincount:** Informs user how many times \"pain\" was said.\n"+
+			"**$pain:** Pain.\n"+
 			"**$autoresponse `{prompt}` `{response}`:** Adds autoresponse to bot.",
 		15844367)
 

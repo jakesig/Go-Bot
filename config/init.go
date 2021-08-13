@@ -124,6 +124,13 @@ func Init() {
 		return
 	}
 
+	// Set status of the bot
+
+	if err := (*discordgo.Session).UpdateGameStatus(dg, 0, "$pain"); err != nil {
+		fmt.Println("Error setting status!\n" + err.Error())
+		return
+	}
+
 	// Logs to the console once the bot is running
 
 	fmt.Println("Logged in as " + dg.State.User.Username + "#" + dg.State.User.Discriminator)

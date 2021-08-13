@@ -1,4 +1,4 @@
-## Go Bot
+## Pain Bot
 
 **Author:** Jake Sigman  
 **Email:** <jsigman04@gmail.com>  
@@ -22,3 +22,11 @@ This bot serves to help me learn Go.
     ```
 
 3. Create a file in the same directory of `main.go` called `count.txt` containing "0" and no other characters.
+
+### Commands
+
+**$help:** Opens list of commands.   
+**$ping:** Pings the bot.   
+**$paincount:** Informs user how many times "pain" was said.   
+**$pain:** Pain.   
+**$autoresponse `{prompt}` `{response}`:** Adds autoresponse to bot.   

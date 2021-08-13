@@ -33,7 +33,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	// Pain counter
 
-	if m.Content == "pain" {
+	if strings.ToLower(m.Content) == "pain" {
 		paincount++
 		if err := ioutil.WriteFile("count.txt", []byte(strconv.Itoa(paincount)), 0644); err != nil {
 			fmt.Println("Error writing to file!\n" + err.Error())
