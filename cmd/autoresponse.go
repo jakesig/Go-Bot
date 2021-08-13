@@ -16,10 +16,6 @@ import (
 	"strings"
 )
 
-var (
-	autoresponse_embed *discordgo.MessageEmbed
-)
-
 // Primary function
 
 func Autoresponse(s *discordgo.Session, m *discordgo.MessageCreate, autoresponses map[string]string) {
@@ -56,8 +52,17 @@ func Autoresponse(s *discordgo.Session, m *discordgo.MessageCreate, autoresponse
 	}
 	// Embed construction
 
-	autoresponse_embed = embed.NewGenericEmbedAdvanced("Autoresponse Added!",
-		"**Prompt:** "+args[1]+"\n**Response:** "+autoresponses[args[1]], 15844367)
+	description := "**Prompt:** "+args[1]+"\n**Response:** "+autoresponses[args[1]]
+
+  autoresponse_embed := embed.NewEmbed().
+    SetTitle("Autoresponse Added!").
+    SetDescription(description).
+    SetColor(15844367).
+    SetThumbnail("https://github.com/jakesig/Pain-Bot/blob/master/share/icon.png?raw=true").
+    MessageEmbed
+
+  // Embed sending
+
 	if _, err := s.ChannelMessageSendEmbed(m.ChannelID, autoresponse_embed); err != nil {
 		fmt.Println("Error sending Embed!\n" + err.Error())
 		return
