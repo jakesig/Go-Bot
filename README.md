@@ -29,4 +29,5 @@ This bot serves to help me learn Go.
 **$ping:** Pings the bot.   
 **$paincount:** Informs user how many times "pain" was said.   
 **$pain:** Pain.   
-**$autoresponse `{prompt}` `{response}`:** Adds autoresponse to bot.   
+**$autoresponse `{prompt}` `{response}`:** Adds autoresponse to bot. 
+**$autoresponses**: Sends list of all current autoresponses.      

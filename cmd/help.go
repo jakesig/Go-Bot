@@ -10,7 +10,6 @@ package cmd
 
 import (
 	"fmt"
-  "time"
 	"github.com/bwmarrin/discordgo"
 	"github.com/clinet/discordgo-embed"
 )
@@ -35,12 +34,13 @@ func Help(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	// Embed construction
 
-	help_embed = embed.NewGenericEmbedAdvanced("Pain Bot List of Commands",
-		"**$help:** Opens this menu.\n"+
-    "**$ping:** Pings the bot.\n"+
-    "**$paincount:** Informs user how many times \"pain\" was said.\n"+
-    "**$pain:** Pain.\n"+
-    "**$autoresponse `{prompt}` `{response}`:** Adds autoresponse to bot.",
+	help_embed = embed.NewGenericEmbedAdvanced("Pain Bot - List of Commands",
+		"**$help:** Opens this menu.\n" +
+    "**$ping:** Pings the bot.\n" +
+    "**$paincount:** Informs user how many times \"pain\" was said.\n" +
+    "**$pain:** Pain.\n" +
+    "**$autoresponse `{prompt}` `{response}`:** Adds autoresponse to bot.\n" +
+    "**$autoresponses**: Sends list of all current autoresponses.",
 		15844367)
 
 	// Embed sending

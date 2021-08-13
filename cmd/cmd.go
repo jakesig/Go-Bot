@@ -27,6 +27,9 @@ func Cmd(s *discordgo.Session, m *discordgo.MessageCreate, autoresponses map[str
 	case prefix + "autoresponse":
 		Autoresponse(s, m, autoresponses)
 		break
+  case prefix + "autoresponses":
+		Autoresponses(s, m, autoresponses)
+		break
 	case prefix + "help":
 		Help(s, m)
 		break
