@@ -36,6 +36,10 @@ func PainEveryDay(s *discordgo.Session) {
 	hour, min, _ := paintime.Clock()
 	fmt.Println("Time set: " + strconv.Itoa(hour) + " hours and " + strconv.Itoa(min) + " minutes")
 
+	// Find channels named "general"
+
+	findGeneral(s)
+
 	// Go routine for sending pain once every day at a random time
 
 	go func() {
@@ -50,7 +54,7 @@ func PainEveryDay(s *discordgo.Session) {
 			nhour, nmin, _ := time.Now().Clock()
 			hour, min, _ := paintime.Clock()
 
-			for i := 0; i < len(findGeneral(s)); i++ {
+			for i := 0; i < len(general_channels); i++ {
 				if nhour == hour && nmin == min && !paintoday {
 					if _, err := s.ChannelMessageSend(general_channels[i], "pain"); err != nil {
 						fmt.Println("Error sending message!\n" + err.Error())
