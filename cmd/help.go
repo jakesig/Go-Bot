@@ -10,6 +10,7 @@ package cmd
 
 import (
 	"fmt"
+  "time"
 	"github.com/bwmarrin/discordgo"
 	"github.com/clinet/discordgo-embed"
 )
@@ -27,6 +28,10 @@ func Help(s *discordgo.Session, m *discordgo.MessageCreate) {
 	// Delete invocation
 
 	DeleteInvocation(s, m)
+
+  // Start typing
+
+  s.ChannelTyping(m.ChannelID)
 
 	// Embed construction
 
