@@ -14,12 +14,6 @@ import (
 	"github.com/clinet/discordgo-embed"
 )
 
-// Variables
-
-var (
-	help_embed *discordgo.MessageEmbed
-)
-
 // Primary function
 
 func Help(s *discordgo.Session, m *discordgo.MessageCreate) {
@@ -34,14 +28,19 @@ func Help(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	// Embed construction
 
-	help_embed = embed.NewGenericEmbedAdvanced("Pain Bot - List of Commands",
-		"**$help:** Opens this menu.\n" +
+  description := "**$help:** Opens this menu.\n" +
     "**$ping:** Pings the bot.\n" +
     "**$paincount:** Informs user how many times \"pain\" was said.\n" +
     "**$pain:** Pain.\n" +
     "**$autoresponse `{prompt}` `{response}`:** Adds autoresponse to bot.\n" +
-    "**$autoresponses**: Sends list of all current autoresponses.",
-		15844367)
+    "**$autoresponses**: Sends list of all current autoresponses."
+
+  help_embed := embed.NewEmbed().
+    SetTitle("Pain Bot - List of Commands").
+    SetDescription(description).
+    SetColor(15844367).
+    SetThumbnail("https://github.com/jakesig/Pain-Bot/blob/master/share/icon.png?raw=true").
+    MessageEmbed
 
 	// Embed sending
 

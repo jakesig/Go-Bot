@@ -15,12 +15,6 @@ import (
 	"strconv"
 )
 
-// Variables
-
-var (
-	paincount_embed *discordgo.MessageEmbed
-)
-
 // Primary function
 
 func PainCount(s *discordgo.Session, m *discordgo.MessageCreate, paincount int) {
@@ -31,7 +25,12 @@ func PainCount(s *discordgo.Session, m *discordgo.MessageCreate, paincount int) 
 
 	// Embed construction
 
-	paincount_embed = embed.NewGenericEmbedAdvanced("Pain Count", strconv.Itoa(paincount), 15844367)
+  paincount_embed := embed.NewEmbed().
+    SetTitle("Pain Counter").
+    SetDescription(strconv.Itoa(paincount)).
+    SetColor(15844367).
+    SetThumbnail("https://github.com/jakesig/Pain-Bot/blob/master/share/icon.png?raw=true").
+    MessageEmbed
 
 	// Embed sending
 
