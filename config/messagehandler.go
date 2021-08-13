@@ -1,5 +1,5 @@
 /* messagehandler.go
-** Go Bot
+** Pain Bot
 ** Author: Jake Sigman
 ** This file contains the code for handling messages.
  */

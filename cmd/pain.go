@@ -1,5 +1,5 @@
 /* pain.go
-** Go Bot
+** Pain Bot
 ** Author: Jake Sigman
 ** Pain.
  */

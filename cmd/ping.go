@@ -1,5 +1,5 @@
 /* ping.go
-** Go Bot
+** Pain Bot
 ** Author: Jake Sigman
 ** This file contains the code for pinging the bot.
  */
