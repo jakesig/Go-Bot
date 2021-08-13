@@ -1,5 +1,5 @@
 /* cmd.go
-** Go Bot
+** Pain Bot
 ** Author: Jake Sigman
 ** This file contains the code for initializing the bot.
  */
@@ -12,11 +12,9 @@ import (
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"io"
-	"math/rand"
 	"os"
 	"strconv"
 	"strings"
-	"time"
 )
 
 // Variables
@@ -137,10 +135,7 @@ func Init() {
 
 	fmt.Println("Logged in as " + dg.State.User.Username + "#" + dg.State.User.Discriminator)
 
-}
+	// Run a function asynchronously to send pain in #general once a day
 
-func randomTimestamp() time.Time {
-	randomTime := rand.Int63n(time.Now().Unix()-94608000) + 94608000
-	randomNow := time.Unix(randomTime, 0)
-	return randomNow
+	PainEveryDay(dg)
 }

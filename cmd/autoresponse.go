@@ -1,5 +1,5 @@
 /* autoresponse.go
-** Go Bot
+** Pain Bot
 ** Author: Jake Sigman
 ** This file contains the code for the autoresponse function.
  */

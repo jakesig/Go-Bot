@@ -1,5 +1,5 @@
 /* main.go
-** Go Bot
+** Pain Bot
 ** Author: Jake Sigman
 ** This file contains the primary code for operating the bot.
  */
