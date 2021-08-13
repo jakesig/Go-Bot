@@ -30,7 +30,7 @@ func Help(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	// Embed construction
 
-	help_embed = embed.NewGenericEmbedAdvanced("Go Bot List of Commands",
+	help_embed = embed.NewGenericEmbedAdvanced("Pain Bot List of Commands",
 		"**$help:** Opens this menu.\n"+
     "**$ping:** Pings the bot.\n"+
     "**$paincount:** Informs user how many times \"pain\" was said.\n"+
