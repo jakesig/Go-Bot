@@ -44,7 +44,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	// For loop for autoresponses
 
 	for key, value := range autoresponses {
-		if strings.Contains(m.Content, key) && m.Content[:1] != prefix {
+		if strings.Contains(strings.ToLower(m.Content), key) && m.Content[:1] != prefix {
 			if _, err := s.ChannelMessageSend(m.ChannelID, value); err != nil {
 				fmt.Println("Error sending message!\n" + err.Error())
 				return
