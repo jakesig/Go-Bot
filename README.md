@@ -21,7 +21,7 @@ This bot serves to help me learn Go.
     [Prompt 2]/[Response 2]
     ```
 
-3. Create a file in the same directory of `main.go` called `count.txt` containing "0" and no other characters.
+3. Create a file in the same directory of `main.go` called `count.txt`.
 
 ### Commands
 
