@@ -22,25 +22,28 @@ func Help(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	DeleteInvocation(s, m)
 
-  // Start typing
+	// Start typing
 
-  s.ChannelTyping(m.ChannelID)
+	if err := s.ChannelTyping(m.ChannelID); err != nil {
+		fmt.Println("Error starting channel typing!")
+		return
+	}
 
 	// Embed construction
 
-  description := "**$help:** Opens this menu.\n" +
-    "**$ping:** Pings the bot.\n" +
-    "**$paincount:** Informs user how many times \"pain\" was said.\n" +
-    "**$pain:** Pain.\n" +
-    "**$autoresponse `{prompt}` `{response}`:** Adds autoresponse to bot.\n" +
-    "**$autoresponses**: Sends list of all current autoresponses."
+	description := "**$help:** Opens this menu.\n" +
+		"**$ping:** Pings the bot.\n" +
+		"**$paincount:** Informs user how many times \"pain\" was said.\n" +
+		"**$pain:** Pain.\n" +
+		"**$autoresponse `{prompt}` `{response}`:** Adds autoresponse to bot.\n" +
+		"**$autoresponses**: Sends list of all current autoresponses."
 
-  help_embed := embed.NewEmbed().
-    SetTitle("Pain Bot - List of Commands").
-    SetDescription(description).
-    SetColor(15844367).
-    SetThumbnail("https://github.com/jakesig/Pain-Bot/blob/master/share/icon.png?raw=true").
-    MessageEmbed
+	help_embed := embed.NewEmbed().
+		SetTitle("Pain Bot - List of Commands").
+		SetDescription(description).
+		SetColor(15844367).
+		SetThumbnail("https://github.com/jakesig/Pain-Bot/blob/master/share/icon.png?raw=true").
+		MessageEmbed
 
 	// Embed sending
 
