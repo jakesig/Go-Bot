@@ -21,13 +21,14 @@ This bot serves to help me learn Go.
     [Prompt 2]/[Response 2]
     ```
 
-3. Create a file in the same directory of `main.go` called `count.txt` containing "0" and no other characters.
+3. Create a file in the same directory of `main.go` called `count.txt`.
 
 ### Commands
 
 **$help:** Opens list of commands.   
 **$ping:** Pings the bot.   
 **$paincount:** Informs user how many times "pain" was said.   
+**$git:** Returns git repository information.   
 **$pain:** Pain.   
-**$autoresponse `{prompt}` `{response}`:** Adds autoresponse to bot. 
+**$autoresponse `{prompt}` `{response}`:** Adds autoresponse to bot.    
 **$autoresponses**: Sends list of all current autoresponses.      

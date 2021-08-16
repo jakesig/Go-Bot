@@ -27,14 +27,14 @@ var (
 
 func PainEveryDay(s *discordgo.Session) {
 
-	fmt.Println("Initializing times...")
+	fmt.Println("GO: Initializing times...")
 	paintoday = false
 
 	// Get a random timestamp
 
 	paintime := randomTimestamp()
 	hour, min, _ := paintime.Clock()
-	fmt.Println("Time set: " + strconv.Itoa(hour) + " hours and " + strconv.Itoa(min) + " minutes")
+	fmt.Println("GO: Time set: " + strconv.Itoa(hour) + " hours and " + strconv.Itoa(min) + " minutes")
 
 	// Find channels named "general"
 
@@ -48,7 +48,7 @@ func PainEveryDay(s *discordgo.Session) {
 				paintoday = false
 				paintime = randomTimestamp()
 				hour, min, _ := paintime.Clock()
-				fmt.Println("Time set: " + strconv.Itoa(hour) + " hours and " + strconv.Itoa(min) + " minutes")
+				fmt.Println("GO: Time set: " + strconv.Itoa(hour) + " hours and " + strconv.Itoa(min) + " minutes")
 			}
 
 			nhour, nmin, _ := time.Now().Clock()

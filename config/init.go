@@ -57,7 +57,7 @@ func Init() {
 
 			// Log to the console what we're up to
 
-			fmt.Println("Reading config file...")
+			fmt.Println("GO: Reading config file...")
 
 			// Get the lines of the file
 
@@ -133,7 +133,7 @@ func Init() {
 
 	// Logs to the console once the bot is running
 
-	fmt.Println("Logged in as " + dg.State.User.Username + "#" + dg.State.User.Discriminator)
+	fmt.Println("GO: Logged in as " + dg.State.User.Username + "#" + dg.State.User.Discriminator)
 
 	// Run a function asynchronously to send pain in #general once a day
 
