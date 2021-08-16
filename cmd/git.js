@@ -1,9 +1,15 @@
+// Library imports
+
 const Discord = require('discord.js');
 const fs = require('fs');
 const git = require('git-last-commit');
 
+// Constant and function declarations
+
 const client = new Discord.Client();
 console.log = function(){};
+
+// Read init.txt file
 
 fs.readFile('init.txt', 'utf8', function(err, data) {
   if (err) throw err;
@@ -16,9 +22,13 @@ fs.readFile('init.txt', 'utf8', function(err, data) {
   client.login(token);
 });
 
+// When client is ready, log that the client logged in successfully.
+
 client.on('ready', () => {
     console.info(`JS: Logged in as ${client.user.tag}`);
 });
+
+// Code for $git command.
 
 client.on('message', (msg) => {
   if (msg.content == "$git") {
@@ -44,6 +54,7 @@ client.on('message', (msg) => {
         .setTitle("GitHub Repository: jakesig/Pain-Bot")
         .setDescription("https://github.com/jakesig/Pain-Bot\n\n__**Latest Commit**__\n**Message: **"+name+"\n**Branch: **"+branch+"\n**Date: **"+s+"\n**ID: **"+commitid)
         .setThumbnail("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAi68fw3hBkE6l-vGLWYB9aRoSV5DWJ0zKJtAzpjYTMD83DwP5WU4D1N7eHx1ucPcZle8&usqp=CAU");
+        
       msg.channel.send(embed);
     });
   }
