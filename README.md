@@ -1,6 +1,6 @@
 ## Pain Bot
 
-**Author:** Jake Sigman  
+**Contributors:** Jake Sigman, Jacob Koziej  
 **Email:** <jsigman04@gmail.com>  
 **Created:** August 10, 2021
 
