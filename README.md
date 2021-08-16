@@ -28,6 +28,7 @@ This bot serves to help me learn Go.
 **$help:** Opens list of commands.   
 **$ping:** Pings the bot.   
 **$paincount:** Informs user how many times "pain" was said.   
+**$git:** Returns git repository information.   
 **$pain:** Pain.   
 **$autoresponse `{prompt}` `{response}`:** Adds autoresponse to bot.    
 **$autoresponses**: Sends list of all current autoresponses.      

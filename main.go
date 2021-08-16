@@ -19,12 +19,12 @@ func main() {
 
 	// Initialize the bot
 
-	fmt.Println("Initializing bot...")
+	fmt.Println("GO: Initializing bot...")
 	config.Init()
 
 	// Initialize the server
 
-	fmt.Println("Initializing server...")
+	fmt.Println("GO: Initializing server...")
 	config.Server()
 
 }
