@@ -1,3 +1,10 @@
+/* git.js
+** Pain Bot
+** Author: Jake Sigman
+** This file contains the code for the git function.
+ */
+
+
 // Library imports
 
 const Discord = require('discord.js');

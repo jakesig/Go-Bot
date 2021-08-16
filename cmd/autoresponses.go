@@ -1,4 +1,13 @@
+/* autoresponses.go
+** Pain Bot
+** Author: Jake Sigman
+** This file contains the code for the autoresponses function.
+ */
+
+
 package cmd
+
+// Imports
 
 import (
 	"fmt"
