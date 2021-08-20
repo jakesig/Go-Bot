@@ -12,18 +12,18 @@ import (
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"github.com/clinet/discordgo-embed"
+	"io"
+	"io/ioutil"
 	"os"
 	"strings"
-  "io/ioutil"
-  "io"
 )
 
 // Variables
 
 var (
-  linecount     int
-  write         string
-  section       string
+	linecount int
+	write     string
+	section   string
 )
 
 // Primary function
@@ -53,23 +53,23 @@ func Remove(s *discordgo.Session, m *discordgo.MessageCreate, autoresponses map[
 		SetThumbnail("https://github.com/jakesig/Pain-Bot/blob/master/share/icon.png?raw=true").
 		MessageEmbed
 
-  // Remove autoresponse from map
+	// Remove autoresponse from map
 
-  delete(autoresponses, args[1])  
+	delete(autoresponses, args[1])
 
-  // Embed sending
+	// Embed sending
 
 	if _, err := s.ChannelMessageSendEmbed(m.ChannelID, autoresponse_embed); err != nil {
 		fmt.Println("Error sending Embed!\n" + err.Error())
 		return
 	}
 
-  // Read init.txt
+	// Read init.txt
 
-  buf := make([]byte, 1024)
+	buf := make([]byte, 1024)
 	linecount = 0
 
-  for {
+	for {
 
 		n, err := f.Read(buf)
 
@@ -94,20 +94,20 @@ func Remove(s *discordgo.Session, m *discordgo.MessageCreate, autoresponses map[
 				if strings.TrimSpace(line) == "AUTORESPONSES" {
 					section = "AUTORESPONSES"
 				} else if section == "AUTORESPONSES" && (args[1] == strings.Split(line, "/")[0] || line == "") {
-          continue
-        }
+					continue
+				}
 
-        write = write + line + "\n"
+				write = write + line + "\n"
 			}
 		}
 	}
 
-  // Overwrite init.txt with updated autoresponses
+	// Overwrite init.txt with updated autoresponses
 
-  if err := ioutil.WriteFile("init.txt", []byte(write), 0644); err != nil {
-			fmt.Println("Error writing to file!\n" + err.Error())
-			return
-  }
+	if err := ioutil.WriteFile("init.txt", []byte(write), 0644); err != nil {
+		fmt.Println("Error writing to file!\n" + err.Error())
+		return
+	}
 
 	// Close the init.txt file
 
