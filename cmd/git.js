@@ -41,7 +41,7 @@ client.on('ready', () => {
 // Code for $git command.
 
 client.on('message', (msg) => {
-  if (msg.content == "$git") {
+  if (msg.content.toLowerCase() == "$git") {
     //Send embed with name of latest commit
 
     var commitname=git.getLastCommit(function(err, commit) {
