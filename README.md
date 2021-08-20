@@ -35,4 +35,5 @@ This bot serves to help me learn Go.
 **$git:** Returns git repository information.   
 **$pain:** Pain.   
 **$autoresponse `{prompt}` `{response}`:** Adds autoresponse to bot.    
-**$autoresponses**: Sends list of all current autoresponses.      
+**$autoresponses**: Sends list of all current autoresponses.    
+**$remove `{prompt}` :** Removes autoresponse from bot with provided prompt.     

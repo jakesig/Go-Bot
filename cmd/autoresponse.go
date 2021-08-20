@@ -57,7 +57,7 @@ func Autoresponse(s *discordgo.Session, m *discordgo.MessageCreate, autoresponse
 	autoresponse_embed := embed.NewEmbed().
 		SetTitle("Autoresponse Added!").
 		SetDescription(description).
-		SetColor(15844367).
+		SetColor(3066993).
 		SetThumbnail("https://github.com/jakesig/Pain-Bot/blob/master/share/icon.png?raw=true").
 		MessageEmbed
 

@@ -71,6 +71,12 @@ func Init() {
 				line := lines[linecount]
 				linecount = linecount + 1
 
+        // Checking if the line is blank
+
+        if line == "" {
+          continue
+        }
+
 				// The first line has the token on it
 
 				if linecount == 1 {
@@ -143,7 +149,7 @@ func Init() {
 
 	// Logs to the console once the bot is running
 
-	fmt.Println("GO: Logged in as " + dg.State.User.Username + "#" + dg.State.User.Discriminator)
+	// fmt.Println("GO: Logged in as " + dg.State.User.Username + "#" + dg.State.User.Discriminator)
 
 	// Run a function asynchronously to send pain in #general once a day
 
