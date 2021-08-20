@@ -1,6 +1,6 @@
 ## Pain Bot
 
-**Author:** Jake Sigman  
+**Contributors:** Jake Sigman, Jacob Koziej  
 **Email:** <jsigman04@gmail.com>  
 **Created:** August 10, 2021
 
@@ -15,6 +15,10 @@ This bot serves to help me learn Go.
 
     ```
     TOKEN: [Bot token]
+
+    IGNORE
+    [Server ID 1]
+    [Server ID 2]
 
     AUTORESPONSES
     [Prompt 1]/[Response 1]

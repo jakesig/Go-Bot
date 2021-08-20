@@ -16,6 +16,9 @@ const git = require('git-last-commit');
 const client = new Discord.Client();
 console.log = function(){};
 
+// Log to console
+console.info(`JS: Reading config file...`);
+
 // Read init.txt file
 
 fs.readFile('init.txt', 'utf8', function(err, data) {

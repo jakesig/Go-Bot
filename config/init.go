@@ -21,6 +21,8 @@ import (
 
 var (
 	token         string
+  ignoreIDs     []string
+  ignore        bool
 	section       string
 	prefix        string
 	paincount     int
@@ -73,6 +75,14 @@ func Init() {
 
 				if linecount == 1 {
 					token = strings.Split(line, ": ")[1]
+				}
+
+        // Checking servers that we want to ignore for the paincount
+
+        if strings.TrimSpace(line) == "IGNORE" {
+					section = "IGNORE"
+				} else if section == "IGNORE" {
+					ignoreIDs = append(ignoreIDs, strings.TrimSpace(line))
 				}
 
 				// Checking if we hit the autoresponses section of the init file

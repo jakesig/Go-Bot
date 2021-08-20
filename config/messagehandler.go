@@ -31,9 +31,20 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	cmd.Cmd(s, m, autoresponses, "$", paincount)
 
+  // Determine if the server needs to be ignored for the pain counter
+
+  ignore = false
+
+  for i := 0; i < len(ignoreIDs); i++ {
+    if m.GuildID == ignoreIDs[i] {
+      ignore = true
+      break
+    }
+  }
+
 	// Pain counter
 
-	if strings.ToLower(m.Content) == "pain" {
+	if strings.ToLower(m.Content) == "pain" && !ignore {
 		paincount++
 		if err := ioutil.WriteFile("count.txt", []byte(strconv.Itoa(paincount)), 0644); err != nil {
 			fmt.Println("Error writing to file!\n" + err.Error())

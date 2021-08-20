@@ -34,7 +34,7 @@ func PainEveryDay(s *discordgo.Session) {
 
 	paintime := randomTimestamp()
 	hour, min, _ := paintime.Clock()
-	fmt.Println("GO: Time set: " + strconv.Itoa(hour) + " hours and " + strconv.Itoa(min) + " minutes")
+	fmt.Println("GO: Initial time set: " + strconv.Itoa(hour) + " hours and " + strconv.Itoa(min) + " minutes")
 
 	// Find channels named "general"
 
