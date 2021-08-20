@@ -64,7 +64,7 @@ client.on('message', (msg) => {
         .setColor('#f1c40f')
         .setTitle("GitHub Repository: jakesig/Pain-Bot")
         .setDescription("https://github.com/jakesig/Pain-Bot\n\n__**Latest Commit**__\n**Message: **"+name+"\n**Branch: **"+branch+"\n**Date: **"+s+"\n**ID: **"+commitid)
-        .setThumbnail("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAi68fw3hBkE6l-vGLWYB9aRoSV5DWJ0zKJtAzpjYTMD83DwP5WU4D1N7eHx1ucPcZle8&usqp=CAU");
+        .setThumbnail("https://github.com/jakesig/Pain-Bot/blob/master/share/github.png?raw=true");
         
       msg.channel.send(embed);
     });
