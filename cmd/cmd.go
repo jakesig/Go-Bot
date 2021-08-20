@@ -20,7 +20,7 @@ func Cmd(s *discordgo.Session, m *discordgo.MessageCreate, autoresponses map[str
 
 	// Switch statement for processing commands
 
-	switch strings.Split(m.Content, " ")[0] {
+	switch strings.ToLower(strings.Split(m.Content, " ")[0]) {
 	case prefix + "ping":
 		Ping(s, m)
 		break
