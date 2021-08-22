@@ -28,6 +28,7 @@ var (
 	paincount     int
 	linecount     int
 	autoresponses map[string]string
+  messages      []string
 )
 
 // Initialization function
@@ -40,7 +41,7 @@ func Init() {
 
 	// Variables to keep track of lines, linecount, and autoresponses
 
-	buf := make([]byte, 1024)
+	buf := make([]byte, 16000)
 	linecount = 0
 	autoresponses = make(map[string]string)
 	prefix = "$"
@@ -115,6 +116,22 @@ func Init() {
 	f, _ = os.Open("./count.txt")
 	n, _ := f.Read(buf)
 	paincount, _ = strconv.Atoi(strings.TrimSpace(string(buf[:n])))
+  f.Close()
+
+  // Open the file with messages to send, and read the messages
+
+  f, _ = os.Open("./messages.txt")
+  n, _ = f.Read(buf)
+  msgs := strings.Split(string(buf[:n]), "---END MESSAGE---")
+  f.Close()
+
+  for i := 0; i < len(msgs); i++ {
+    messages = append(messages, msgs[i])
+  }
+
+  // Deallocate the memory for the buffer
+
+  buf = buf[:0]
 
 	// Creates a new discordgo client
 
@@ -132,6 +149,7 @@ func Init() {
 	// Intents
 
 	dg.Identify.Intents = discordgo.IntentsGuildMessages
+  dg.Identify.Intents = discordgo.IntentsDirectMessages
 
 	// Open connection to Discord
 
@@ -149,7 +167,7 @@ func Init() {
 
 	// Logs to the console once the bot is running
 
-	// fmt.Println("GO: Logged in as " + dg.State.User.Username + "#" + dg.State.User.Discriminator)
+	fmt.Println("GO: Logged in as " + dg.State.User.Username + "#" + dg.State.User.Discriminator)
 
 	// Run a function asynchronously to send pain in #general once a day
 

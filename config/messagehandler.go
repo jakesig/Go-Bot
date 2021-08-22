@@ -15,16 +15,31 @@ import (
 	"io/ioutil"
 	"strconv"
 	"strings"
+  "math/rand"
 )
 
 // Message Handler
 
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
-	//Checks if the bot sent the message
+	// Checks if the bot sent the message
 
 	if m.Author.ID == s.State.User.ID {
 		return
+	}
+
+  // Checks if message is a DM
+
+	if isDM, _ := ComesFromDM(s, m); isDM {
+    dmChannel, _ := s.UserChannelCreate(m.Author.ID)
+
+    // Sends a random message from messages.txt
+
+		if _, err := s.ChannelMessageSend(dmChannel.ID, messages[rand.Intn(len(messages))]); err != nil {
+		  fmt.Println("Error sending message!\n" + err.Error())
+	  }
+    
+    return
 	}
 
 	// Process it as a command first
@@ -62,4 +77,18 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 			}
 		}
 	}
+}
+
+// ComesFromDM returns true if a message comes from a DM channel
+// Source: https://github.com/bwmarrin/discordgo/wiki/FAQ#checking-if-a-message-is-a-direct-message-dm
+
+func ComesFromDM(s *discordgo.Session, m *discordgo.MessageCreate) (bool, error) {
+	channel, err := s.State.Channel(m.ChannelID)
+	if err != nil {
+		if channel, err = s.Channel(m.ChannelID); err != nil {
+			return false, err
+		}
+	}
+
+	return channel.Type == discordgo.ChannelTypeDM, nil
 }
