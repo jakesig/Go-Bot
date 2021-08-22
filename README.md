@@ -26,6 +26,14 @@ This bot serves to help me learn Go.
     ```
 
 3. Create a file in the same directory of `main.go` called `count.txt`.
+4. The bot will also use a file that responds to DMs with messages in `messages.txt`. The file should be in the same directory as `main.go` and should look as follows (ignore any square brackets):
+
+    ```
+    [Message 1 Content]
+    ---END MESSAGE---
+    [Message 2 Content]
+    ---END MESSAGE---
+    ```
 
 ### Commands
 
