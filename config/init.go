@@ -21,14 +21,14 @@ import (
 
 var (
 	token         string
-  ignoreIDs     []string
-  ignore        bool
+	ignoreIDs     []string
+	ignore        bool
 	section       string
 	prefix        string
 	paincount     int
 	linecount     int
 	autoresponses map[string]string
-  messages      []string
+	messages      []string
 )
 
 // Initialization function
@@ -72,11 +72,11 @@ func Init() {
 				line := lines[linecount]
 				linecount = linecount + 1
 
-        // Checking if the line is blank
+				// Checking if the line is blank
 
-        if line == "" {
-          continue
-        }
+				if line == "" {
+					continue
+				}
 
 				// The first line has the token on it
 
@@ -84,9 +84,9 @@ func Init() {
 					token = strings.Split(line, ": ")[1]
 				}
 
-        // Checking servers that we want to ignore for the paincount
+				// Checking servers that we want to ignore for the paincount
 
-        if strings.TrimSpace(line) == "IGNORE" {
+				if strings.TrimSpace(line) == "IGNORE" {
 					section = "IGNORE"
 				} else if section == "IGNORE" {
 					ignoreIDs = append(ignoreIDs, strings.TrimSpace(line))
@@ -116,22 +116,34 @@ func Init() {
 	f, _ = os.Open("./count.txt")
 	n, _ := f.Read(buf)
 	paincount, _ = strconv.Atoi(strings.TrimSpace(string(buf[:n])))
-  f.Close()
 
-  // Open the file with messages to send, and read the messages
+	// Close the file
 
-  f, _ = os.Open("./messages.txt")
-  n, _ = f.Read(buf)
-  msgs := strings.Split(string(buf[:n]), "---END MESSAGE---")
-  f.Close()
+	if err := f.Close(); err != nil {
+		fmt.Println("Error closing init.txt!\n" + err.Error())
+		return
+	}
 
-  for i := 0; i < len(msgs); i++ {
-    messages = append(messages, msgs[i])
-  }
+	// Open the file with messages to send, and read the messages
 
-  // Deallocate the memory for the buffer
+	f, _ = os.Open("./messages.txt")
+	n, _ = f.Read(buf)
+	msgs := strings.Split(string(buf[:n]), "---END MESSAGE---")
 
-  buf = buf[:0]
+	for i := 0; i < len(msgs); i++ {
+		messages = append(messages, msgs[i])
+	}
+
+	// Close the file
+
+	if err := f.Close(); err != nil {
+		fmt.Println("Error closing init.txt!\n" + err.Error())
+		return
+	}
+
+	// Deallocate the memory for the buffer
+
+	buf = buf[:0]
 
 	// Creates a new discordgo client
 
@@ -149,7 +161,7 @@ func Init() {
 	// Intents
 
 	dg.Identify.Intents = discordgo.IntentsGuildMessages
-  dg.Identify.Intents = discordgo.IntentsDirectMessages
+	dg.Identify.Intents = discordgo.IntentsDirectMessages
 
 	// Open connection to Discord
 

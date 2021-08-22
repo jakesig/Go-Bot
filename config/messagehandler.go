@@ -13,9 +13,9 @@ import (
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"io/ioutil"
+	"math/rand"
 	"strconv"
 	"strings"
-  "math/rand"
 )
 
 // Message Handler
@@ -28,34 +28,34 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		return
 	}
 
-  // Checks if message is a DM
+	// Checks if message is a DM
 
 	if isDM, _ := ComesFromDM(s, m); isDM {
-    dmChannel, _ := s.UserChannelCreate(m.Author.ID)
+		dmChannel, _ := s.UserChannelCreate(m.Author.ID)
 
-    // Sends a random message from messages.txt
+		// Sends a random message from messages.txt
 
 		if _, err := s.ChannelMessageSend(dmChannel.ID, messages[rand.Intn(len(messages))]); err != nil {
-		  fmt.Println("Error sending message!\n" + err.Error())
-	  }
-    
-    return
+			fmt.Println("Error sending message!\n" + err.Error())
+		}
+
+		return
 	}
 
 	// Process it as a command first
 
 	cmd.Cmd(s, m, autoresponses, "$", paincount)
 
-  // Determine if the server needs to be ignored for the pain counter
+	// Determine if the server needs to be ignored for the pain counter
 
-  ignore = false
+	ignore = false
 
-  for i := 0; i < len(ignoreIDs); i++ {
-    if m.GuildID == ignoreIDs[i] {
-      ignore = true
-      break
-    }
-  }
+	for i := 0; i < len(ignoreIDs); i++ {
+		if m.GuildID == ignoreIDs[i] {
+			ignore = true
+			break
+		}
+	}
 
 	// Pain counter
 
