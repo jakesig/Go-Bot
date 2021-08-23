@@ -179,7 +179,7 @@ func Init() {
 
 	// Logs to the console once the bot is running
 
-	fmt.Println("GO: Logged in as " + dg.State.User.Username + "#" + dg.State.User.Discriminator)
+	// fmt.Println("GO: Logged in as " + dg.State.User.Username + "#" + dg.State.User.Discriminator)
 
 	// Run a function asynchronously to send pain in #general once a day
 
