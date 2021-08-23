@@ -32,7 +32,7 @@ func PainEveryDay(s *discordgo.Session) {
 
 	// Get a random timestamp
 
-  loc, _ := time.LoadLocation("America/New_York")
+	loc, _ := time.LoadLocation("America/New_York")
 	paintime := randomTimestamp()
 	hour, min, _ := paintime.Clock()
 	fmt.Println("GO: Initial time set: " + strconv.Itoa(hour) + " hours and " + strconv.Itoa(min) + " minutes")
@@ -50,7 +50,7 @@ func PainEveryDay(s *discordgo.Session) {
 				paintime = randomTimestamp()
 				hour, min, _ := paintime.Clock()
 				fmt.Println("GO: Time set: " + strconv.Itoa(hour) + " hours and " + strconv.Itoa(min) + " minutes")
-        time.Sleep(5 * time.Second)
+				time.Sleep(5 * time.Second)
 			}
 
 			nhour, nmin, _ := time.Now().In(loc).Clock()
@@ -62,7 +62,7 @@ func PainEveryDay(s *discordgo.Session) {
 						fmt.Println("Error sending message!\n" + err.Error())
 						return
 					}
-          
+
 					paintoday = true
 				}
 			}
