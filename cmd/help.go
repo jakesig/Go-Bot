@@ -35,9 +35,9 @@ func Help(s *discordgo.Session, m *discordgo.MessageCreate) {
 		"**$ping:** Pings the bot.\n" +
 		"**$paincount:** Informs user how many times \"pain\" was said.\n" +
 		"**$pain:** Pain.\n" +
-    "**$git:** Returns git repository information.\n" +
+		"**$git:** Returns git repository information.\n" +
 		"**$autoresponse `{prompt}` `{response}`:** Adds autoresponse to bot.\n" +
-    "**$remove `{prompt}` :** Removes autoresponse from bot with provided prompt.\n" +
+		"**$remove `{prompt}` :** Removes autoresponse from bot with provided prompt.\n" +
 		"**$autoresponses**: Sends list of all current autoresponses."
 
 	help_embed := embed.NewEmbed().

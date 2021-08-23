@@ -120,7 +120,7 @@ func Init() {
 	// Close the file
 
 	if err := f.Close(); err != nil {
-		fmt.Println("Error closing init.txt!\n" + err.Error())
+		fmt.Println("Error closing count.txt!\n" + err.Error())
 		return
 	}
 
@@ -137,7 +137,7 @@ func Init() {
 	// Close the file
 
 	if err := f.Close(); err != nil {
-		fmt.Println("Error closing init.txt!\n" + err.Error())
+		fmt.Println("Error closing messages.txt!\n" + err.Error())
 		return
 	}
 
@@ -157,11 +157,11 @@ func Init() {
 	// Handlers
 
 	dg.AddHandler(messageCreate)
+	dg.AddHandler(guildCreate)
 
 	// Intents
 
-	dg.Identify.Intents = discordgo.IntentsGuildMessages
-	dg.Identify.Intents = discordgo.IntentsDirectMessages
+	dg.Identify.Intents = discordgo.IntentsAllWithoutPrivileged
 
 	// Open connection to Discord
 

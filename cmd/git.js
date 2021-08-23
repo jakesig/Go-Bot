@@ -4,7 +4,6 @@
 ** This file contains the code for the git function.
  */
 
-
 // Library imports
 
 const Discord = require('discord.js');
@@ -41,11 +40,11 @@ client.on('ready', () => {
 // Code for $git command.
 
 client.on('message', (msg) => {
-  if (msg.content.toLowerCase() == "$git") {
+  if (msg.content.toLowerCase() === "$git") {
     
     //Send embed with name of latest commit
 
-    var commitname=git.getLastCommit(function(err, commit) {
+    git.getLastCommit(function(err, commit) {
       
       if (err)
         throw err;
@@ -53,9 +52,9 @@ client.on('message', (msg) => {
 
       //Determine commit information, including the date
 
-      var commitid=Object.values(commit)[1]
-      var name=Object.values(commit)[2];
-      var branch=Object.values(commit)[10];
+      var commitID = Object.values(commit)[1]
+      var name = Object.values(commit)[2];
+      var branch = Object.values(commit)[10];
       var s = new Date(Object.values(commit)[6]*1000).toLocaleDateString("en-US", {timeZone: "America/New_York"});
 
       //Construct and send embed
@@ -63,7 +62,7 @@ client.on('message', (msg) => {
       const embed = new Discord.MessageEmbed()
         .setColor('#f1c40f')
         .setTitle("GitHub Repository: jakesig/Pain-Bot")
-        .setDescription("https://github.com/jakesig/Pain-Bot\n\n__**Latest Commit**__\n**Message: **"+name+"\n**Branch: **"+branch+"\n**Date: **"+s+"\n**ID: **"+commitid)
+        .setDescription("https://github.com/jakesig/Pain-Bot\n\n__**Latest Commit**__\n**Message: **"+name+"\n**Branch: **"+branch+"\n**Date: **"+s+"\n**ID: **"+commitID)
         .setThumbnail("https://github.com/jakesig/Pain-Bot/blob/master/share/github.png?raw=true");
         
       msg.channel.send(embed);

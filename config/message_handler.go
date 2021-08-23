@@ -1,4 +1,4 @@
-/* messagehandler.go
+/* message_handler.go
 ** Pain Bot
 ** Author: Jake Sigman
 ** This file contains the code for handling messages.
