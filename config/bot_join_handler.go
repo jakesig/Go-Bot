@@ -26,10 +26,10 @@ func guildCreate(s *discordgo.Session, g *discordgo.GuildCreate) {
 	// Determine if the bot was in the server already
 
 	t, _ := discordgo.Timestamp.Parse(g.JoinedAt)
-	hour, min, _ := t.Clock()
-	nhour, nmin, _ := time.Now().Clock()
+	year, month, day := t.Date()
+	nyear, nmonth, nday := time.Now().Date()
 
-	if hour != nhour && min != nmin {
+	if year != nyear && month != nmonth && day != nday {
 		return
 	}
 
